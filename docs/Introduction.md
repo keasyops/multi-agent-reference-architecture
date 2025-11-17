@@ -1,44 +1,27 @@
-# Introduction
+# 简介
 
-_Last updated: 2025-05-16_
+_最后更新: 2025-05-16_
 
-Generative AI is shifting rapidly from research to production, with enterprises
-seeking robust, maintainable and scalable solutions to solve complex problems.
-In this landscape, the design of multi-agent systems, where numerous specialized
-AI agents cooperate to solve problems, has become critically important: enables
-modularity, domain expertise, and agility, offering adaptability as business
-needs and AI capabilities evolve.
+生成式AI正快速从研究转向生产，企业正寻求稳健、可维护且可扩展的解决方案来解决复杂问题。在此背景下，多智能体系统的设计变得至关重要，多个专业化AI智能体协作解决问题已成为核心：它实现了模块化、领域专业知识和敏捷性，随着业务需求和AI能力的发展提供适应性。
 
-These systems reflect the natural structure of organizations: different roles,
-responsibilities, and domains mapped to individual or composite agents, each
-optimized for specific knowledge or workflows.
+这些系统反映了组织的自然结构：不同的角色、职责和领域映射到单个或复合智能体，每个都针对特定知识或工作流进行优化。
 
-## Design Principles
+## 设计原则
 
-The following design principles are especially crucial for multi-agent systems,
-as identified through real-world implementations in large enterprises. These
-principles address challenges unique to environments where multiple agents
-interact, collaborate, and exchange information. Treat them as guiding
-foundations rather than rigid requirements:
+以下设计原则对于多智能体系统尤为关键，这些原则源于大型企业的实际实施经验。这些原则解决了多个智能体交互、协作和交换信息的环境中独有的挑战。将它们视为指导基础而非严格要求：
 
-> This repository is continuously maintained by contributors to provide the
-> community with the most up-to-date guidance, grounded in real-world enterprise
-> experience and aligned with the latest developments in multi-agent systems. We
-> welcome your feedback, suggestions, and references to additional resources
-> that could enrich this documentation. As we evolve this reference
-> architecture, community input plays a vital role in shaping its relevance and
-> impact.
+> 该仓库由贡献者持续维护，为社区提供最新的指导，基于真实的企业经验并与多智能体系统的最新发展保持一致。我们欢迎您的反馈、建议以及可以丰富本文档的其他资源引用。随着我们不断发展这个参考架构，社区的意见在塑造其相关性和影响力方面发挥着至关重要的作用。
 
 <!-- markdownlint-disable MD013 -->
 
-| Name                                      | Description                                                                                                                                                                                                                                                                                                                                                                                                             |
-| ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Separation of Concerns                    | In multi-agent systems, it’s essential that each agent has a distinct and well-defined responsibility. This clarity enables focused development, scalable deployment, reduced cross-cutting changes, and makes it possible for agents to encapsulate deep domain expertise.                                                                                                                                             |
-| Secure by Design                          | With multiple agents communicating and acting within the same ecosystem, robust security is paramount. This includes strict authentication, authorization, and policy enforcement for every agent interface. It’s also necessary to carefully manage sensitive data flows between agents, minimize data retention, and clearly define data handling practices to prevent unintended leakage or escalation of privilege. |
-| Observability & Traceability              | Multi-agent workflows generate complex, interdependent behaviors. Agents should be instrumented so their actions, data exchanges, and decisions can be traced end-to-end across the system using common identifiers and correlated metrics. This level of observability enables efficient troubleshooting, auditing, and deep understanding of system operations—far beyond what is required in single-agent scenarios. |
-| Agent Registration & Lifecycle Governance | Agents should be explicitly registered, versioned, and validated before being included in production environment. Registration should capture agent capabilities, security posture, and lifecycle state to prevent duplication, control upgrades, and reduce risks from rogue or malfunctioning agents.                                                                                                                 |
-| Failure Isolation & Graceful Degradation  | Failures in one agent should not cascade to others. Consider fallback mechanisms, retries, or degraded modes of operation to ensure the workflow can continue, even in the presence of partial failures.                                                                                                                                                                                                                |
-| Context Management                        | Establish clear rules and policies regarding what context or conversational state is shared among agents and for how long. Carefully control context propagation to avoid privacy issues, data leakage, or logic confusion.                                                                                                                                                                                             |
+| 名称 | 描述 |
+| -------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 关注点分离 | 在多智能体系统中，每个智能体必须具有明确且定义良好的职责至关重要。这种清晰性能够实现专注的开发、可扩展的部署、减少跨领域变更，并使智能体能够封装深厚的领域专业知识。 |
+| 安全设计 | 由于多个智能体在同一生态系统中通信和操作，强大的安全性至关重要。这包括对每个智能体接口进行严格的身份验证、授权和策略执行。还需要仔细管理智能体之间的敏感数据流，最小化数据保留，并明确定义数据处理实践以防止意外泄露或权限升级。 |
+| 可观测性与可追溯性 | 多智能体工作流生成复杂的、相互依赖的行为。智能体应该被工具化，以便使用通用标识符和关联指标在整个系统中端到端地追踪其操作、数据交换和决策。这种级别的可观测性能够实现高效的故障排除、审计和对系统操作的深入理解——远超单智能体场景所需。 |
+| 智能体注册与生命周期治理 | 智能体应该在纳入生产环境之前被明确注册、版本化和验证。注册应捕获智能体能力、安全态势和生命周期状态，以防止重复、控制升级并降低来自流氓或故障智能体的风险。 |
+| 故障隔离与优雅降级 | 一个智能体的故障不应级联到其他智能体。考虑回退机制、重试或降级操作模式，以确保工作流可以继续，即使在部分故障的情况下。 |
+| 上下文管理 | 建立关于哪些上下文或对话状态在智能体之间共享以及共享多长时间的明确规则和策略。仔细控制上下文传播，以避免隐私问题、数据泄露或逻辑混乱。 |
 
 <!-- markdownlint-disable MD013 -->
 
